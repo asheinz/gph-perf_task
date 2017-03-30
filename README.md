@@ -9,3 +9,4 @@ Performance task for Greenphire
 2. Follow prompts for name, numbers, and powerball number.
 3. Continue adding employees.
 4. When finished adding employees, input "no" and results will print.
+5. Program exits.
