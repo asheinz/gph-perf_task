@@ -5,8 +5,9 @@ Performance task for Greenphire
 - python 3.6.1
 
 ## To run
-1. `python3 main.py`
-2. Follow prompts for name, numbers, and powerball number.
-3. Continue adding employees.
-4. When finished adding employees, input "no" and results will print.
-5. Program exits.
+1. `pip3 install -r requirements.txt`
+2. `python3 main.py`
+3. Follow prompts for name, numbers, and powerball number.
+4. Continue adding employees.
+5. When finished adding employees, input "no" and results will print.
+6. Program exits.
