@@ -11,6 +11,7 @@ def get_employees():
             proceed = input("Invalid input. Another employee? 'yes' or 'no' > ")
         if proceed.lower() == "no":
             break
+    return employees
 
 def add_employee():
     min_num, max_num, max_pow = 1, 69, 26
@@ -93,23 +94,30 @@ def prompt_user_for_number(text, n, x, other_set=()):
             print("Integers only, please. Try again.")
     return a_number
 
-def get_totals(employees):
+def get_num_totals(employees):
     # print('count duplicates')
     num_totals = [{},{},{},{},{}]
-    pow_totals = {}
+    print('employees: {}'.format(employees))
     for employee in employees:
         for i, v in enumerate(employee['numbers']):
             if v in num_totals[i].keys():
                 num_totals[i][v] += 1
             else:
                 num_totals[i][v] = 1
-        powball = employee['powerball']
         
+    return num_totals
+
+def get_pow_totals(employees):
+    pow_totals = {}
+    for employee in employees:
+        powball = employee['powerball']
+            
         if employee['powerball'] in pow_totals:
             pow_totals[powball] += 1
         else:
             pow_totals[powball] = 1
-    return {'num_totals': num_totals, 'pow_totals': pow_totals}
+
+    return pow_totals
 
 def get_winning_numbers(num_totals):
     # print('retrieve max count per unique duplicate number')
@@ -117,7 +125,7 @@ def get_winning_numbers(num_totals):
     winning_numbers = []
     for i, s in enumerate(num_totals):
         # 0, {...}
-        winning_numbers.append(determine_winning_number(s))
+        winning_numbers.append(get_winning_number(s))
         # if len(s.keys()) == 1:
         #     dups = [list(s.keys())[0]]
         # else:
@@ -164,8 +172,9 @@ def print_winning_numbers(winning_numbers, winning_powerball):
 
 if __name__ == "__main__":
     employees = get_employees()
-    totals = get_totals(employees)
-    winning_numbers = get_winning_numbers(totals['num_totals'])
-    winning_powerball = get_winning_number(totals['pow_totals'])
+    num_totals = get_num_totals(employees)
+    pow_totals = get_pow_totals(employees)
+    winning_numbers = get_winning_numbers(num_totals)
+    winning_powerball = get_winning_number(pow_totals)
     print_employees(employees)
     print_winning_numbers(winning_numbers, winning_powerball)
